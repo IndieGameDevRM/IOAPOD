@@ -2,10 +2,12 @@ package com.example.lenovo.ioapoddemo;
 
 import android.content.Intent;
 import android.content.res.Resources;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.os.Debug;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,20 +20,57 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.w3c.dom.Text;
 
 public class MainProfile extends AppCompatActivity
 
         implements NavigationView.OnNavigationItemSelectedListener {
     private TextView navUsername,Usermail;
-    public  String mail,name;
+    public  String name,UserID;
+    private DatabaseReference firebbasedatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_profile);
 
-        Usermail=(TextView)findViewById(R.id.nav_header_email);
-        navUsername=(TextView)findViewById(R.id.nav_header_name);
+
+       //firebase data ref
+        firebbasedatabase= FirebaseDatabase.getInstance().getReference("Registered_Detail");
+        FirebaseAuth firebaseauth=FirebaseAuth.getInstance();
+        FirebaseUser User=firebaseauth.getCurrentUser();
+        UserID=User.getEmail();
+        Toast.makeText(MainProfile.this,UserID,Toast.LENGTH_LONG).show();
+
+        //database
+        database db=new database();
+        //Declaration of firebase database
+
+        firebbasedatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                    database db=new database();
+                   // db.setname(ds.child(" ").getValue(database.class).getname());
+                    //Log.d("name:","onDataChange: "+db.getname());
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -53,6 +92,10 @@ public class MainProfile extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Usermail=(TextView)findViewById(R.id.nav_header_email);
+        navUsername=(TextView)findViewById(R.id.nav_header_name);
+        /* set nav text */
+        //Usermail.setText("Hello");
 
     }
 
@@ -105,6 +148,10 @@ public class MainProfile extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
+
+        }else if(id==R.id.weather){
+            Intent i=new Intent(MainProfile.this,WeatherActivity.class);
+            startActivity(i);
 
         }
 

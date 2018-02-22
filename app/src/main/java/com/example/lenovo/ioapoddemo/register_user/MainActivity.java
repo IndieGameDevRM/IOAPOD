@@ -1,4 +1,4 @@
-package com.example.lenovo.ioapoddemo;
+package com.example.lenovo.ioapoddemo.register_user;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lenovo.ioapoddemo.Login;
+import com.example.lenovo.ioapoddemo.R;
+import com.example.lenovo.ioapoddemo.database;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -29,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FirebaseAuth firebaseauth;
     public EditText _UserName;
     public DatabaseReference firebasedatabase;
-
+    public String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +99,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     progressdialog.dismiss();
                     Intent i=new Intent(MainActivity.this,Login.class);
                     startActivity(i);
-                    database db=new database(_userName,email,password);
-                    String id=firebasedatabase.push().getKey();
+
+                    id=firebasedatabase.push().getKey();
+                    database db=new database(id,_userName,email,password);
                     firebasedatabase.child(id).setValue(db);
                 }else{
                     FirebaseAuthException e = (FirebaseAuthException)task.getException();

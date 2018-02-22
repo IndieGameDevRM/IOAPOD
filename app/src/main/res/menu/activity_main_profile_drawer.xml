@@ -15,6 +15,10 @@
             android:icon="@drawable/biofertilizer"
             android:title="BioFertilizers" />
         <item
+            android:id="@+id/weather"
+            android:icon="@drawable/weather"
+            android:title="Wealther"/>
+        <item
             android:id="@+id/nav_library"
             android:icon="@drawable/library"
             android:title="Library" />

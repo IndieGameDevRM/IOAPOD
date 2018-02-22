@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <ImageView
+
+        android:layout_width="50dp"
+        android:layout_height="100dp"
+        android:id="@+id/weatherimg"
+        android:src="@drawable/weather"
+        android:layout_marginBottom="36dp"
+        android:layout_above="@+id/weathertemp"
+        android:layout_alignRight="@+id/weathertemp"
+        android:layout_alignEnd="@+id/weathertemp"
+        android:layout_alignLeft="@+id/weathertemp"
+        android:layout_alignStart="@+id/weathertemp" />
+    <TextView
+        android:id="@+id/weathertemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Temperture"
+        android:layout_marginBottom="15dp"
+        android:layout_above="@+id/weathercondition"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="101dp"
+        android:layout_marginEnd="101dp" />
+
+    <TextView
+        android:id="@+id/weathercondition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="condition"
+        android:layout_above="@+id/weatherlocation"
+        android:layout_alignLeft="@+id/weatherlocation"
+        android:layout_alignStart="@+id/weatherlocation"
+        android:layout_marginBottom="17dp" />
+
+    <TextView
+        android:id="@+id/weatherlocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="location"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

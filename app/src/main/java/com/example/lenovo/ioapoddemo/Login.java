@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lenovo.ioapoddemo.register_user.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -67,6 +68,8 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                   startActivity(i);
 
               }else{
+                  FirebaseAuthException e = (FirebaseAuthException)task.getException();
+                  Toast.makeText(Login.this, "Failed Registration: "+e.getMessage(), Toast.LENGTH_LONG).show();
                   progressdialog.dismiss();
                   Toast.makeText(Login.this,"Login Failed",Toast.LENGTH_SHORT).show();
               }

@@ -6,14 +6,17 @@ package com.example.lenovo.ioapoddemo;
 
 public class database {
     private String Moisture;
-    private String ID;
+
     private String Temp;
     private String name;
     private String mail;
     private String Password;
+    private String id;
+    public database(){
 
-
-    public database(String _name,String _mail,String password){
+    }
+    public database(String _id,String _name,String _mail,String password){
+        id=_id;
         name=_name;
         mail=_mail;
         Password=password;
@@ -22,7 +25,7 @@ public class database {
         return Moisture;
     }
     public String getID(){
-        return ID;
+        return id;
     }
     public String getTemp(){
         return Temp;
@@ -34,4 +37,8 @@ public class database {
         return mail;
     }
     public String getPassword(){return Password;}
+    public void setname(String n){
+         n=name;
+    }
+
 }
